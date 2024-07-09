@@ -70,6 +70,11 @@ def new_game():
         for column in range(3):
             board[row][column].config(text="", foreground=colorBlue, background=colorGray)
 
+    # exit the game
+
+def exit_game():
+    exit(0)
+
 def center_window(window):
     window.update_idletasks()
     width = window.winfo_width()
@@ -100,7 +105,7 @@ game_over = False
 # Window setup
 window = tkinter.Tk()
 window.title("Tic Tac Toe")
-window.resizable(False, False)
+window.resizable(True, True)
 
 frame = tkinter.Frame(window)
 label = tkinter.Label(frame, text=current_player + "'s turn", font=("Consolas", 20), background=colorGray, foreground="white")
@@ -111,8 +116,11 @@ for row in range(3):
         board[row][column] = tkinter.Button(frame, text="", font=("Consolas", 50, "bold"), background=colorGray, foreground=colorBlue, width=4, height=1, command=lambda row=row, column=column: set_tile(row, column))
         board[row][column].grid(row=row+1, column=column)
 
-button = tkinter.Button(frame, text="Restart Game", font=("Consolas", 20), background=colorGray, foreground="White", command=new_game)
-button.grid(row=4, column=0, columnspan=3, sticky="we")
+button1 = tkinter.Button(frame, text="Restart Game", font=("Consolas", 20), background=colorGray, foreground="White", command=new_game)
+button1.grid(row=4, column=0, columnspan=2, sticky="we")
+
+button2 = tkinter.Button(frame, text="Exit", font=("Consolas", 20), background=colorGray, foreground="White", command=exit_game)
+button2.grid(row=4, column=2, columnspan=1, sticky="we")
 
 frame.pack()
 
